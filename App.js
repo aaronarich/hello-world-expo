@@ -1,18 +1,20 @@
 import React from "react";
-import { StyleSheet, Text, View, StatusBar } from "react-native";
+import { StyleSheet, Text, View, TouchableHighlight } from "react-native";
 
 const styles = StyleSheet.create({
-  defaultText: {
-    fontSize: 60,
-    fontWeight: "bold",
-    fontFamily: "Helvetica",
-    color: "#f9f9f9",
-    padding: 36
-  },
   container: {
     flex: 1,
-    flexDirection: "row",
-    alignItems: "center"
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#F5FCFF"
+  },
+  button: {
+    margin: 10,
+    padding: 10,
+    borderWidth: 2,
+    borderRadius: 10,
+    alignSelf: "stretch",
+    backgroundColor: "rgba(255,255,255,.8)"
   },
   row: {
     flexDirection: "row",
@@ -48,10 +50,27 @@ export default class App extends React.Component {
     const { backgroundColor } = this.state;
     return (
       <View style={[styles.container, { backgroundColor }]}>
-        <View style={styles.row}>
-          <View style={styles.sample} />
-          <Text style={styles.text}>Yellow</Text>
-        </View>
+        <TouchableHighlight
+          style={styles.button}
+          onPress={() => this.changeColor("yellow")}
+          underlayColor="orange"
+        >
+          <View style={styles.row}>
+            <View style={[styles.sample, { backgroundColor: "yellow" }]} />
+            <Text style={styles.text}>yellow</Text>
+          </View>
+        </TouchableHighlight>
+
+        <TouchableHighlight
+          style={styles.button}
+          onPress={() => this.changeColor("blue")}
+          underlayColor="orange"
+        >
+          <View style={styles.row}>
+            <View style={[styles.sample, { backgroundColor: "blue" }]} />
+            <Text style={styles.text}>blue</Text>
+          </View>
+        </TouchableHighlight>
       </View>
     );
   }
