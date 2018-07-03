@@ -11,20 +11,23 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "flex-start",
-    backgroundColor: "#f9f9f9"
+    flexDirection: "row",
+    alignItems: "center"
   },
-  button: {
+  row: {
+    flexDirection: "row",
+    alignItems: "center"
+  },
+  sample: {
+    height: 20,
+    width: 20,
+    borderRadius: 10,
+    margin: 5,
+    backgroundColor: "white"
+  },
+  text: {
     fontSize: 30,
-    color: "#f9f9f9",
-    margin: 10,
-    padding: 10,
-    borderWidth: 1,
-    borderColor: "#f9f9f9",
-    alignSelf: "stretch",
-    textAlign: "center"
+    margin: 5
   }
 });
 
@@ -45,18 +48,10 @@ export default class App extends React.Component {
     const { backgroundColor } = this.state;
     return (
       <View style={[styles.container, { backgroundColor }]}>
-        <Text style={styles.button} onPress={() => this.changeColor("green")}>
-          Green
-        </Text>
-        <Text style={styles.button} onPress={() => this.changeColor("red")}>
-          Red
-        </Text>
-        <Text style={styles.button} onPress={() => this.changeColor("blue")}>
-          Blue
-        </Text>
-        <Text style={styles.button} onPress={() => this.changeColor("yellow")}>
-          Yellow
-        </Text>
+        <View style={styles.row}>
+          <View style={styles.sample} />
+          <Text style={styles.text}>Yellow</Text>
+        </View>
       </View>
     );
   }
