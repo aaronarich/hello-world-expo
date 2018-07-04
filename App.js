@@ -1,7 +1,8 @@
 import React from "react";
-import { StyleSheet, ListView, Text } from "react-native";
+import { StyleSheet, ListView } from "react-native";
 
 import ColorButton from "./components/ColorButton";
+import ColorForm from "./components/ColorForm";
 
 const styles = StyleSheet.create({
   container: {
@@ -32,10 +33,19 @@ export default class App extends React.Component {
       dataSource: this.ds.cloneWithRows(availableColors)
     };
     this.changeColor = this.changeColor.bind(this);
+    this.newColor = this.newColor.bind(this);
   }
 
   changeColor(backgroundColor) {
     this.setState({ backgroundColor });
+  }
+
+  newColor(color) {
+    const availableColors = [...this.state.availableColors, color];
+    this.setState({
+      availableColors,
+      dataSource: this.ds.cloneWithRows(availableColors)
+    });
   }
 
   render() {
@@ -47,7 +57,7 @@ export default class App extends React.Component {
         renderRow={color => (
           <ColorButton backgroundColor={color} onSelect={this.changeColor} />
         )}
-        renderHeader={() => <Text style={styles.header}>Color List</Text>}
+        renderHeader={() => <ColorForm onNewColor={this.newColor} />}
       />
     );
   }
